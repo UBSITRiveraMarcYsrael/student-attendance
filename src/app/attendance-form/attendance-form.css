@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .attendance-container { max-width: 500px; margin: 30px auto; font-family: sans-serif; }
 form { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
 .input-group input, .input-group select { width: 100%; padding: 10px; box-sizing: border-box; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; }
@@ -11,3 +12,15 @@ button:disabled { background-color: #cccccc; cursor: not-allowed; }
 .late    { color: #ffc107; font-weight: bold; }
 .tardy   { color: #6f42c1; font-weight: bold; }
 .empty-state { text-align: center; color: #888; font-style: italic; }
+=======
+.card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 4px;
+}
+.present { color: #155724; font-weight: bold; }
+.absent  { color: #721c24; font-weight: bold; }
+.late    { color: #856404; font-weight: bold; }
+.tardy   { color: #383d41; font-weight: bold; }
+>>>>>>> 30dfd287e3b6675018aafb1beee8cf867cac75b8

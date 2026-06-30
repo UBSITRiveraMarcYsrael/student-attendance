@@ -1,11 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AttendanceForm } from './attendance-form/attendance-form';
+import { Home } from './home/home';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [AttendanceForm],
+  imports: [AttendanceForm, Home],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
