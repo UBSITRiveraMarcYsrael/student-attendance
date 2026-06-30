@@ -1,11 +1,13 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Attendance } from '../attendance';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-attendance-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './attendance-form.html',
   styleUrl: './attendance-form.css',
 })

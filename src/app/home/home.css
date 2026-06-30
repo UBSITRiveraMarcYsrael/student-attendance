@@ -1,0 +1,76 @@
+* { margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: sans-serif; 
+}
+
+body { 
+    color: #333; 
+    line-height: 1.6; }
+nav, main, header { 
+    padding: 20px 10%; 
+}
+
+/* Navigation */
+nav { 
+    display: flex; 
+    justify-content: space-between; 
+    background: #fff; 
+    box-shadow: 0 2px 5px #0001; 
+}
+
+nav a { 
+    margin-left: 20px; 
+    text-decoration: none; 
+    color: #333; 
+}
+
+/* Hero Section */
+header { 
+    background: #2c3e50; 
+    color: #fff; 
+    text-align: center; 
+    padding: 80px 10%; 
+}
+
+header p { 
+    margin: 15px 0 25px; 
+    color: #ccc; 
+}
+
+button { 
+    background: #3498db; 
+    color: #fff; 
+    border: 0; 
+    padding: 12px 25px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+/* Features Grid */
+main { 
+    display: flex; 
+    gap: 20px; 
+    background: #f4f6f7; 
+}
+main div { 
+    flex: 1; 
+    background: #fff; 
+    padding: 20px; 
+    border-radius: 5px; 
+    text-align: center; 
+}
+
+main h3 { 
+    margin-bottom: 10px; 
+}
+
+/* Responsive Mobile */
+@media (
+    max-width: 600px) {
+    nav, main { 
+        flex-direction: column; 
+        text-align: center; 
+        gap: 15px; }
+    nav a { margin: 0 10px; }
+}
