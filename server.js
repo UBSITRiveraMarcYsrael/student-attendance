@@ -15,7 +15,8 @@ const Student = mongoose.model
 ('Student', new mongoose.Schema(
 {
     name: String,
-    section: String
+    section: String,
+    status: String
 }))//Attributes
 
 //API Endpoints for the application

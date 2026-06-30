@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Attendance {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/api/attendance';
+  private apiUrl = 'http://localhost:3000/api/student';
 
   // Reactive state management using signals
   attendanceList = signal<any[]>([]);

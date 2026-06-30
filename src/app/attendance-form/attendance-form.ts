@@ -8,6 +8,7 @@ import { Attendance } from '../attendance';
   imports: [ReactiveFormsModule],
   templateUrl: './attendance-form.html',
   styleUrl: './attendance-form.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AttendanceForm {
   private formBuilder = inject(FormBuilder);
@@ -16,8 +17,12 @@ export class AttendanceForm {
   attendanceForm = this.formBuilder.nonNullable.group({
     name: ['', Validators.required],
     section: ['', Validators.required],
-    status: ['Present', Validators.required] // Options: Present, Absent, Late, Tardy
+    status: ['', Validators.required] // Options: Present, Absent, Late, Tardy
   });
+
+  ngOnInit() {
+    this.attendanceService.fetchAttendance();
+  }
 
   onSubmit() {
     if (this.attendanceForm.valid) {

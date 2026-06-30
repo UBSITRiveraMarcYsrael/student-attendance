@@ -1,11 +1,13 @@
-.card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 4px;
-  }
-  .present { color: #155724; font-weight: bold; }
-  .absent  { color: #721c24; font-weight: bold; }
-  .late    { color: #856404; font-weight: bold; }
-  .tardy   { color: #383d41; font-weight: bold; }
-  
+.attendance-container { max-width: 500px; margin: 30px auto; font-family: sans-serif; }
+form { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
+.input-group input, .input-group select { width: 100%; padding: 10px; box-sizing: border-box; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; }
+button { padding: 12px; font-size: 15px; color: white; background-color: #007bff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+button:disabled { background-color: #cccccc; cursor: not-allowed; }
+.log-card { border: 1px solid #eaeaea; padding: 15px; margin-bottom: 12px; border-radius: 6px; background-color: #fafafa; }
+.log-card h3 { margin: 0 0 8px 0; color: #333; }
+.log-card p { margin: 5px 0; font-size: 14px; }
+.present { color: #28a745; font-weight: bold; }
+.absent  { color: #dc3545; font-weight: bold; }
+.late    { color: #ffc107; font-weight: bold; }
+.tardy   { color: #6f42c1; font-weight: bold; }
+.empty-state { text-align: center; color: #888; font-style: italic; }

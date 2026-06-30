@@ -1,24 +1,40 @@
-<form [formGroup]="attendanceForm" (ngSubmit)="onSubmit()">
-    <input formControlName="employeeId" placeholder="Employee ID" type="text" />
-    
-    <select formControlName="status">
-      <option value="Present">Present</option>
-      <option value="Absent">Absent</option>
-      <option value="Late">Late</option>
-      <option value="Tardy">Tardy</option>
-    </select>
-  
-    <button type="submit" [disabled]="!attendanceForm.valid">Log Attendance</button>
-  </form>
-  
-  <h2>Attendance Logs</h2>
-  
-  @for (log of attendanceService.attendanceList(); track log._id) {
-    <div class="card">
-      <h3>ID: {{ log.employeeId }}</h3>
-      <p>Status: <span [class]="log.status.toLowerCase()">{{ log.status }}</span></p>
+<div class="attendance-container">
+  <h2>Log Student Attendance</h2>
+
+  <form [formGroup]="attendanceForm" (ngSubmit)="onSubmit()">
+    <div class="input-group">
+      <input formControlName="name" placeholder="Student Name" type="text" />
     </div>
-  } @empty {
-    <p>No attendance logs recorded.</p>
-  }
-  
+
+    <div class="input-group">
+      <input formControlName="section" placeholder="Section" type="text" />
+    </div>
+    
+    <div class="input-group">
+      <select formControlName="status">
+        <option value="" disabled selected>Select Status</option>
+        <option value="Present">Present</option>
+        <option value="Absent">Absent</option>
+        <option value="Late">Late</option>
+        <option value="Tardy">Tardy</option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="!attendanceForm.valid">Submit Log</button>
+  </form>
+
+  <hr />
+
+  <h2>Attendance History</h2>
+  <div class="logs-grid">
+    @for (student of attendanceService.attendanceList(); track student._id) {
+      <div class="log-card">
+        <h3>{{ student.name }}</h3>
+        <p><strong>Section:</strong> {{ student.section }}</p>
+        <p><strong>Status:</strong> <span [class]="student.status?.toLowerCase()">{{ student.status }}</span></p>
+      </div>
+    } @empty {
+      <p class="empty-state">No attendance records found.</p>
+    }
+  </div>
+</div>
