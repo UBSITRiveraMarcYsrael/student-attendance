@@ -1,0 +1,24 @@
+<form [formGroup]="attendanceForm" (ngSubmit)="onSubmit()">
+    <input formControlName="employeeId" placeholder="Employee ID" type="text" />
+    
+    <select formControlName="status">
+      <option value="Present">Present</option>
+      <option value="Absent">Absent</option>
+      <option value="Late">Late</option>
+      <option value="Tardy">Tardy</option>
+    </select>
+  
+    <button type="submit" [disabled]="!attendanceForm.valid">Log Attendance</button>
+  </form>
+  
+  <h2>Attendance Logs</h2>
+  
+  @for (log of attendanceService.attendanceList(); track log._id) {
+    <div class="card">
+      <h3>ID: {{ log.employeeId }}</h3>
+      <p>Status: <span [class]="log.status.toLowerCase()">{{ log.status }}</span></p>
+    </div>
+  } @empty {
+    <p>No attendance logs recorded.</p>
+  }
+  
