@@ -1,16 +1,11 @@
 <div class="attendance-container">
   <h2>Log Student Attendance</h2>
-
+  
+  <!-- Attendance Submission Form -->
   <form [formGroup]="attendanceForm" (ngSubmit)="onSubmit()">
-    <div class="input-group">
+    <div class="input-inline-group">
       <input formControlName="name" placeholder="Student Name" type="text" />
-    </div>
-
-    <div class="input-group">
       <input formControlName="section" placeholder="Section" type="text" />
-    </div>
-    
-    <div class="input-group">
       <select formControlName="status">
         <option value="" disabled selected>Select Status</option>
         <option value="Present">Present</option>
@@ -18,23 +13,73 @@
         <option value="Late">Late</option>
         <option value="Tardy">Tardy</option>
       </select>
+      <button type="submit" [disabled]="!attendanceForm.valid">Submit Log</button>
     </div>
-
-    <button type="submit" [disabled]="!attendanceForm.valid">Submit Log</button>
   </form>
 
   <hr />
 
-  <h2>Attendance History</h2>
-  <div class="logs-grid">
-    @for (student of attendanceService.attendanceList(); track student._id) {
-      <div class="log-card">
-        <h3>{{ student.name }}</h3>
-        <p><strong>Section:</strong> {{ student.section }}</p>
-        <p><strong>Status:</strong> <span [class]="student.status?.toLowerCase()">{{ student.status }}</span></p>
-      </div>
-    } @empty {
-      <p class="empty-state">No attendance records found.</p>
-    }
+  <h2>Attendance Sheet Grid</h2>
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>Students</th>
+          <th>
+            Monday
+            <span class="date-sub"></span>
+          </th>
+          <th class="status-cell">
+            Tuesday
+            <span class="date-sub"></span>
+          </th>
+          <th class="status-cell">
+            Wednesday
+            <span class="date-sub"></span>
+          </th>
+          <th class="status-cell">
+            Thursday
+            <span class="date-sub"></span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (student of attendanceService.attendanceList(); track student._id) {
+          <tr>
+            <td class="student-name">
+              {{ student.name }}
+              <span class="section-badge">{{ student.section }}</span>
+            </td>
+          
+            <td>
+              <span class="inline-status-view" [ngClass]="{
+                'status-p': student.status === 'Present',
+                'status-a': student.status === 'Absent',
+                'status-t': student.status === 'Late' || student.status === 'Tardy'
+              }">{{ student.status }}</span>
+            </td>
+
+            <!-- Historical columns mapped out safely using single-letter display indicators -->
+            <td class="status-cell">
+              <span class="status-p">P</span>
+            </td>
+
+            <td class="status-cell">
+              <span [ngClass]="student.status === 'Absent' ? 'status-a' : 'status-p'">
+                {{ student.status === 'Absent' ? 'A' : 'P' }}
+              </span>
+            </td>
+
+            <td class="status-cell">
+              <span class="status-p">P</span>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="empty-state">No attendance records found.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
   </div>
 </div>

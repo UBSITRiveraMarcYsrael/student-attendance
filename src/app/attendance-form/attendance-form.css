@@ -1,26 +1,137 @@
-<<<<<<< HEAD
-.attendance-container { max-width: 500px; margin: 30px auto; font-family: sans-serif; }
-form { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
-.input-group input, .input-group select { width: 100%; padding: 10px; box-sizing: border-box; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; }
-button { padding: 12px; font-size: 15px; color: white; background-color: #007bff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-button:disabled { background-color: #cccccc; cursor: not-allowed; }
-.log-card { border: 1px solid #eaeaea; padding: 15px; margin-bottom: 12px; border-radius: 6px; background-color: #fafafa; }
-.log-card h3 { margin: 0 0 8px 0; color: #333; }
-.log-card p { margin: 5px 0; font-size: 14px; }
-.present { color: #28a745; font-weight: bold; }
-.absent  { color: #dc3545; font-weight: bold; }
-.late    { color: #ffc107; font-weight: bold; }
-.tardy   { color: #6f42c1; font-weight: bold; }
-.empty-state { text-align: center; color: #888; font-style: italic; }
-=======
-.card {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 8px 0;
+/* Core Framework Layout */
+.attendance-container {
+  max-width: 1200px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+h2 {
+  color: #1a2e3b;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+/* Horizontal Form Styling */
+.input-inline-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.input-inline-group input,
+.input-inline-group select {
+  flex: 1;
+  min-width: 150px;
+  padding: 0.6rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.input-inline-group button {
+  background-color: #1a2e3b;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.input-inline-group button:disabled {
+  background-color: #cbd5e0;
+  cursor: not-allowed;
+}
+
+/* Table Architecture Styles */
+.table-responsive {
+  overflow-x: auto;
+  border: 1px solid #edf2f7;
   border-radius: 4px;
 }
-.present { color: #155724; font-weight: bold; }
-.absent  { color: #721c24; font-weight: bold; }
-.late    { color: #856404; font-weight: bold; }
-.tardy   { color: #383d41; font-weight: bold; }
->>>>>>> 30dfd287e3b6675018aafb1beee8cf867cac75b8
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+/* Dark Header configuration matching image */
+th {
+  background-color: #1a2e3b;
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: left;
+  border-right: 1px solid #2c4251;
+}
+
+th .date-sub {
+  display: block;
+  font-size: 0.75rem;
+  color: #a0aec0;
+  font-weight: normal;
+  margin-top: 0.15rem;
+}
+
+td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #edf2f7;
+  border-right: 1px solid #edf2f7;
+  font-size: 0.95rem;
+  color: #2d3748;
+}
+
+td.student-name {
+  font-weight: 500;
+  color: #1a202c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-badge {
+  font-size: 0.75rem;
+  background: #f7fafc;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  color: #718096;
+}
+
+/* Underline cell display indicator text style */
+.inline-status-view {
+  display: inline-block;
+  width: 90%;
+  border-bottom: 1px solid #cbd5e0;
+  padding-bottom: 0.2rem;
+  font-size: 0.9rem;
+}
+
+.status-cell {
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.95rem;
+  width: 12%;
+}
+
+/* Image Letter Status Colors */
+.status-p {
+  color: #3182ce; /* Light Blue */
+}
+
+.status-a {
+  color: #e53e3e; /* Red */
+}
+
+.status-t {
+  color: #805ad5; /* Purple */
+}
+
+.empty-state {
+  text-align: center;
+  color: #718096;
+  padding: 2rem;
+}
