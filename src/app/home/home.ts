@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { AttendanceForm } from '../attendance-form/attendance-form';
+import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-home',
@@ -9,5 +9,5 @@ import { AttendanceForm } from '../attendance-form/attendance-form';
   styleUrl: './home.css',
 })
 export class Home {
-  attendance = inject(AttendanceForm);
+  
 }
