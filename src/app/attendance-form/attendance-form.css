@@ -1,137 +1,186 @@
-/* Core Framework Layout */
+/* Container Layout */
 .attendance-container {
   max-width: 1200px;
-  margin: 1.5rem auto;
-  padding: 0 1rem;
-  font-family: system-ui, -apple-system, sans-serif;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #1a202c;
 }
 
 h2 {
-  color: #1a2e3b;
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a365d;
+  margin-bottom: 1.25rem;
 }
 
-/* Horizontal Form Styling */
+hr {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 2.5rem 0;
+}
+
+/* Inline Submission Form Grid */
 .input-inline-group {
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr auto;
+  gap: 1rem;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 0.5rem 0;
 }
 
-.input-inline-group input,
+/* Unified Form Controls */
+.input-inline-group input[type="text"],
+.input-inline-group input[type="date"],
 .input-inline-group select {
-  flex: 1;
-  min-width: 150px;
-  padding: 0.6rem;
-  border: 1px solid #cbd5e0;
-  border-radius: 4px;
-  font-size: 0.9rem;
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.95rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.375rem;
+  background-color: #ffffff;
+  color: #334155;
+  box-sizing: border-box;
 }
 
+.input-inline-group input::placeholder {
+  color: #94a3b8;
+}
+
+.input-inline-group input:focus,
+.input-inline-group select:focus {
+  outline: none;
+  border-color: #3182ce;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
+}
+
+/* Form Action Button */
 .input-inline-group button {
-  background-color: #1a2e3b;
-  color: white;
-  border: none;
-  padding: 0.6rem 1.5rem;
-  border-radius: 4px;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  cursor: pointer;
-}
-
-.input-inline-group button:disabled {
-  background-color: #cbd5e0;
+  background-color: #cbd5e1;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.375rem;
   cursor: not-allowed;
+  white-space: nowrap;
 }
 
-/* Table Architecture Styles */
+.input-inline-group button:not([disabled]) {
+  background-color: #3182ce;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.input-inline-group button:not([disabled]):hover {
+  background-color: #2b6cb0;
+}
+
+/* Responsive Table Wrapper */
 .table-responsive {
+  width: 100%;
   overflow-x: auto;
-  border: 1px solid #edf2f7;
-  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  background: white;
+  text-align: left;
+  background-color: #ffffff;
 }
 
-/* Dark Header configuration matching image */
+/* Table Header Styles */
 th {
   background-color: #1a2e3b;
   color: #ffffff;
-  padding: 0.75rem 1rem;
+  padding: 0.875rem 1rem;
   font-weight: 600;
-  font-size: 0.9rem;
-  text-align: left;
+  font-size: 0.95rem;
   border-right: 1px solid #2c4251;
 }
 
-th .date-sub {
+th:last-child {
+  border-right: none;
+}
+
+/* Date Label Subtitles */
+.date-sub {
   display: block;
   font-size: 0.75rem;
+  font-weight: 400;
   color: #a0aec0;
-  font-weight: normal;
-  margin-top: 0.15rem;
+  margin-top: 0.25rem;
 }
 
+/* Table Body Cell Assignments */
 td {
-  padding: 0.6rem 1rem;
+  padding: 1rem;
   border-bottom: 1px solid #edf2f7;
   border-right: 1px solid #edf2f7;
-  font-size: 0.95rem;
-  color: #2d3748;
+  vertical-align: middle;
 }
 
-td.student-name {
+td:last-child {
+  border-right: none;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Student Information Column */
+.student-name {
   font-weight: 500;
-  color: #1a202c;
+  color: #2d3748;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-width: 240px;
 }
 
 .section-badge {
   font-size: 0.75rem;
-  background: #f7fafc;
-  padding: 0.1rem 0.4rem;
-  border-radius: 3px;
+  font-weight: 600;
   color: #718096;
+  background-color: #edf2f7;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.25rem;
 }
 
-/* Underline cell display indicator text style */
-.inline-status-view {
-  display: inline-block;
-  width: 90%;
-  border-bottom: 1px solid #cbd5e0;
-  padding-bottom: 0.2rem;
-  font-size: 0.9rem;
-}
-
+/* Attendance Day Matrix Cells */
 .status-cell {
   text-align: center;
-  font-weight: bold;
-  font-size: 0.95rem;
-  width: 12%;
+  width: 15%;
+  min-width: 100px;
 }
 
-/* Image Letter Status Colors */
+/* Status View Badges */
+.inline-status-view {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
 .status-p {
-  color: #3182ce; /* Light Blue */
+  color: #3182ce; /* Present Blue */
 }
 
 .status-a {
-  color: #e53e3e; /* Red */
+  color: #e53e3e; /* Absent Red */
 }
 
 .status-t {
-  color: #805ad5; /* Purple */
+  color: #dd6b20; /* Late/Tardy Orange */
 }
 
+/* Empty State Handling */
 .empty-state {
   text-align: center;
   color: #718096;
-  padding: 2rem;
+  padding: 3rem 1rem;
+  font-style: italic;
 }

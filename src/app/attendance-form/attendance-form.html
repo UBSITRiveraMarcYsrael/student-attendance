@@ -6,6 +6,8 @@
     <div class="input-inline-group">
       <input formControlName="name" placeholder="Student Name" type="text" />
       <input formControlName="section" placeholder="Section" type="text" />
+      <input type="date" formControlName="attendanceDate" class="form-date-picker" />
+
       <select formControlName="status">
         <option value="" disabled selected>Select Status</option>
         <option value="Present">Present</option>
@@ -25,21 +27,21 @@
       <thead>
         <tr>
           <th>Students</th>
-          <th>
+          <th class="status-cell">
             Monday
-            <span class="date-sub"></span>
+            <span class="date-sub">{{ weekLabels.monday }}</span>
           </th>
           <th class="status-cell">
             Tuesday
-            <span class="date-sub"></span>
+            <span class="date-sub">{{ weekLabels.tuesday }}</span>
           </th>
           <th class="status-cell">
             Wednesday
-            <span class="date-sub"></span>
+            <span class="date-sub">{{ weekLabels.wednesday }}</span>
           </th>
           <th class="status-cell">
             Thursday
-            <span class="date-sub"></span>
+            <span class="date-sub">{{ weekLabels.thursday }}</span>
           </th>
         </tr>
       </thead>
@@ -51,7 +53,8 @@
               <span class="section-badge">{{ student.section }}</span>
             </td>
           
-            <td>
+            <!--Monday Col-->
+            <td class="status-cell">
               <span class="inline-status-view" [ngClass]="{
                 'status-p': student.status === 'Present',
                 'status-a': student.status === 'Absent',
@@ -59,20 +62,14 @@
               }">{{ student.status }}</span>
             </td>
 
-            <!-- Historical columns mapped out safely using single-letter display indicators -->
-            <td class="status-cell">
-              <span class="status-p">P</span>
-            </td>
+            <!-- Tuesday Column Placeholder -->
+            <td class="status-cell"></td>
 
-            <td class="status-cell">
-              <span [ngClass]="student.status === 'Absent' ? 'status-a' : 'status-p'">
-                {{ student.status === 'Absent' ? 'A' : 'P' }}
-              </span>
-            </td>
+            <!-- Wednesday Column Placeholder -->
+            <td class="status-cell"></td>
 
-            <td class="status-cell">
-              <span class="status-p">P</span>
-            </td>
+            <!-- Thursday Column Placeholder -->
+            <td class="status-cell"></td>      
           </tr>
         } @empty {
           <tr>
