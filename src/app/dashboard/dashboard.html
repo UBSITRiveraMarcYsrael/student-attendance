@@ -1,0 +1,82 @@
+<div class="dashboard-container">
+    <!-- Top Greeting Header Panel -->
+    <header class="dashboard-header">
+      <div class="welcome-meta">
+        <h1>Welcome back, {{ instructorName }}</h1>
+        <p class="current-date">Today is {{ today | date:'EEEE, MMMM d, yyyy' }}</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn-primary" (click)="navigateToAttendance()">
+          <span>📝</span> Open Attendance Grid
+        </button>
+      </div>
+    </header>
+  
+    <!-- Inside your HTML metrics block -->
+<p class="metric-value">{{ totalStudentsCount() }}</p>
+
+<!-- Inside your HTML activity feed panel loop -->
+@for (log of recentLogs(); track log.studentName + log.status) {
+  <div class="activity-item">
+    <div class="activity-marker"></div>
+    <div class="activity-details">
+      <p class="activity-text">
+        <strong>{{ log.studentName }}</strong> status is <span class="badge">{{ log.status }}</span>
+      </p>
+      <span class="activity-time">{{ log.timestamp }} • Section {{ log.section }}</span>
+    </div>
+  </div>
+} @empty {
+  <div class="empty-activities">
+    <p>All students are present or no irregular attendance logged in the database yet.</p>
+  </div>
+}
+  
+    <!-- Quick Action & Activity Content Block Split -->
+    <div class="dashboard-content-split">
+      
+      <!-- Left Core Action Options Panel -->
+      <section class="content-panel quick-actions">
+        <h2>Quick Management Controls</h2>
+        <div class="actions-list">
+          <button class="action-item-btn" (click)="navigateToAttendance()">
+            <span class="action-icon">➕</span>
+            <div class="action-label">
+              <h4>Enroll New Student</h4>
+              <p>Append a new row and student details to your tracked sections grid.</p>
+            </div>
+          </button>
+  
+          <button class="action-item-btn" (click)="printReports()">
+            <span class="action-icon">🖨️</span>
+            <div class="action-label">
+              <h4>Export Weekly Sheet</h4>
+              <p>Download a printable version or CSV log spreadsheet of current records.</p>
+            </div>
+          </button>
+        </div>
+      </section>
+  
+      <!-- Right Recent Activity Feed Panel -->
+      <section class="content-panel activity-feed">
+        <h2>Recent Section Activities</h2>
+        <div class="activity-list">
+          @for (log of Dashboard.recentlogs; track log.timestamp) {
+            <div class="activity-item">
+              <div class="activity-marker"></div>
+              <div class="activity-details">
+                <p class="activity-text"><strong>{{ log.studentName }}</strong> status modified to <span class="badge">{{ log.status }}</span></p>
+                <span class="activity-time">{{ log.timestamp | date:'shortTime' }} • Section {{ log.section }}</span>
+              </div>
+            </div>
+          } @empty {
+            <div class="empty-activities">
+              <p>No attendance adjustments made during this session yet.</p>
+            </div>
+          }
+        </div>
+      </section>
+  
+    </div>
+  </div>
+  

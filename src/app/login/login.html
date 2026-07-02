@@ -1,0 +1,62 @@
+<div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h2>Sign In</h2>
+        <p>Log in to manage records, update student logs, and track weekly attendance.</p>
+      </div>
+  
+      <!-- Login Form Wrapper -->
+      <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+        
+        <!-- Institutional Email Field -->
+        <div class="form-group">
+          <label for="email">Institutional Email Address</label>
+          <div class="input-wrapper">
+            <input 
+              id="email"
+              type="email" 
+              formControlName="email" 
+              placeholder="instructor@school.edu"
+              [ngClass]="{ 'input-error': isFieldInvalid('email') }"
+            />
+          </div>
+          @if (isFieldInvalid('email')) {
+            <span class="error-msg">Please enter a valid institutional email.</span>
+          }
+        </div>
+  
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrapper password-toggle-group">
+            <input 
+              id="password"
+              [type]="hidePassword ? 'password' : 'text'" 
+              formControlName="password" 
+              placeholder="••••••••"
+              [ngClass]="{ 'input-error': isFieldInvalid('password') }"
+            />
+            <button type="button" class="toggle-btn" (click)="hidePassword = !hidePassword">
+              {{ hidePassword ? '👁️' : '🙈' }}
+            </button>
+          </div>
+          @if (isFieldInvalid('password')) {
+            <span class="error-msg">Password is required to sign in.</span>
+          }
+        </div>
+  
+        <!-- Action Button Group -->
+        <div class="form-actions">
+          <button type="submit" class="btn-primary" [disabled]="loginForm.invalid">
+            Sign In & Open Dashboard
+          </button>
+        </div>
+  
+        <!-- Registration Redirect Link -->
+        <div class="auth-footer">
+          <p>New to the portal? <a (click)="navigateToRegister()">Create an Instructor Profile</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+  

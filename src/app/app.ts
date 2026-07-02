@@ -1,15 +1,11 @@
 import { Component, signal } from '@angular/core';
-//import { RouterOutlet } from '@angular/router';
-//import { Navbar } from './navbar/navbar';
-import { AttendanceForm } from './attendance-form/attendance-form';
-import { Home } from './home/home';
-import { Registration } from './registration/registration';
-
+import { RouterOutlet } from '@angular/router';
+import { Navbar } from './navbar/navbar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [AttendanceForm, Home, Registration],
+  imports: [ RouterOutlet, Navbar ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
