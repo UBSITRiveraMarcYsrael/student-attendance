@@ -1,0 +1,96 @@
+<div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h2>Instructor Registration</h2>
+        <p>Create an account to manage your students and access attendance forms.</p>
+      </div>
+  
+      <!-- Registration Form Wrapper -->
+      <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
+        
+        <!-- Full Name Field -->
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <div class="input-wrapper">
+            <input 
+              id="fullName"
+              type="text" 
+              formControlName="fullName" 
+              placeholder="e.g. Prof. Jane Doe"
+              [ngClass]="{ 'input-error': isFieldInvalid('fullName') }"
+            />
+          </div>
+          @if (isFieldInvalid('fullName')) {
+            <span class="error-msg">Full name is required to register.</span>
+          }
+        </div>
+  
+        <!-- Instructor/Employee ID Field -->
+        <div class="form-group">
+          <label for="instructorId">Instructor ID Number</label>
+          <div class="input-wrapper">
+            <input 
+              id="instructorId"
+              type="text" 
+              formControlName="instructorId" 
+              placeholder="e.g. INS-2026-88"
+              [ngClass]="{ 'input-error': isFieldInvalid('instructorId') }"
+            />
+          </div>
+          @if (isFieldInvalid('instructorId')) {
+            <span class="error-msg">A valid Instructor ID is required.</span>
+          }
+        </div>
+  
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email">Institutional Email Address</label>
+          <div class="input-wrapper">
+            <input 
+              id="email"
+              type="email" 
+              formControlName="email" 
+              placeholder="instructor@school.edu"
+              [ngClass]="{ 'input-error': isFieldInvalid('email') }"
+            />
+          </div>
+          @if (isFieldInvalid('email')) {
+            <span class="error-msg">Please enter a valid institutional email.</span>
+          }
+        </div>
+  
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrapper password-toggle-group">
+            <input 
+              id="password"
+              [type]="hidePassword ? 'password' : 'text'" 
+              formControlName="password" 
+              placeholder="••••••••"
+              [ngClass]="{ 'input-error': isFieldInvalid('password') }"
+            />
+            <button type="button" class="toggle-btn" (click)="hidePassword = !hidePassword">
+              {{ hidePassword ? '👁️' : '🙈' }}
+            </button>
+          </div>
+          @if (isFieldInvalid('password')) {
+            <span class="error-msg">Password must be at least 6 characters long.</span>
+          }
+        </div>
+  
+        <!-- Action Button Group -->
+        <div class="form-actions">
+          <button type="submit" class="btn-primary" [disabled]="registerForm.invalid">
+            Create Account & Access Forms
+          </button>
+        </div>
+  
+        <!-- Login Redirect Link -->
+        <div class="auth-footer">
+          <p>Already have an instructor profile? <a (click)="navigateToLogin()">Sign In here</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+  

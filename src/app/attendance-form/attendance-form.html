@@ -1,85 +1,66 @@
 <div class="attendance-container">
-  <h2>Log Student Attendance</h2>
+  <h2>Log Student Attendance / Add New</h2>
   
-  <!-- Attendance Submission Form -->
+  <!-- Form container wrapping both creation and grid for clean form submission -->
   <form [formGroup]="attendanceForm" (ngSubmit)="onSubmit()">
     <div class="input-inline-group">
       <input formControlName="name" placeholder="Student Name" type="text" />
       <input formControlName="section" placeholder="Section" type="text" />
-      <select formControlName="status">
-        <option value="" disabled selected>Select Status</option>
-        <option value="Present">Present</option>
-        <option value="Absent">Absent</option>
-        <option value="Late">Late</option>
-        <option value="Tardy">Tardy</option>
-      </select>
-      <button type="submit" [disabled]="!attendanceForm.valid">Submit Log</button>
+      <button type="submit" [disabled]="!attendanceForm.valid">Add Student</button>
+    </div>
+
+    <hr />
+
+    <h2>Attendance Sheet Grid</h2>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Students</th>
+            <!-- Dynamically display each weekday name along with its current date -->
+            @for (day of weekDaysConfig; track day.key) {
+              <th>
+                {{ day.label }}
+                <span class="date-sub" style="display: block; font-size: 0.8rem; font-weight: normal; opacity: 0.7;">
+                  {{ day.date | date:'MM/dd/yyyy' }}
+                </span>
+              </th>
+            }
+          </tr>
+        </thead>
+        <tbody formArrayName="studentsGrid">
+          @for (studentForm of studentsGrid.controls; track studentForm.value._id; let i = $index) {
+            <tr [formGroupName]="i">
+              <!-- Student Info Read-Only Labels -->
+              <td class="student-name">
+                {{ studentForm.get('name')?.value }}
+                <span class="section-badge">{{ studentForm.get('section')?.value }}</span>
+              </td>
+            
+              <!-- Editable Status Dropdowns per Day matching config keys -->
+              @for (day of weekDaysConfig; track day.key) {
+                <td>
+                  <select [formControlName]="day.key" (change)="onStatusChange(i, day.key)" [ngClass]="{
+                    'status-p': studentForm.get(day.key)?.value === 'Present',
+                    'status-a': studentForm.get(day.key)?.value === 'Absent',
+                    'status-t': studentForm.get(day.key)?.value === 'Late' || studentForm.get(day.key)?.value === 'Tardy'
+                  }">
+                    <option value="">--</option>
+                    <option value="Present">Present</option>
+                    <option value="Absent">Absent</option>
+                    <option value="Late">Late</option>
+                    <option value="Tardy">Tardy</option>
+                  </select>
+                </td>
+              }
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6" class="empty-state">No attendance records found.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
     </div>
   </form>
-
-  <hr />
-
-  <h2>Attendance Sheet Grid</h2>
-  <div class="table-responsive">
-    <table>
-      <thead>
-        <tr>
-          <th>Students</th>
-          <th>
-            Monday
-            <span class="date-sub"></span>
-          </th>
-          <th class="status-cell">
-            Tuesday
-            <span class="date-sub"></span>
-          </th>
-          <th class="status-cell">
-            Wednesday
-            <span class="date-sub"></span>
-          </th>
-          <th class="status-cell">
-            Thursday
-            <span class="date-sub"></span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (student of attendanceService.attendanceList(); track student._id) {
-          <tr>
-            <td class="student-name">
-              {{ student.name }}
-              <span class="section-badge">{{ student.section }}</span>
-            </td>
-          
-            <td>
-              <span class="inline-status-view" [ngClass]="{
-                'status-p': student.status === 'Present',
-                'status-a': student.status === 'Absent',
-                'status-t': student.status === 'Late' || student.status === 'Tardy'
-              }">{{ student.status }}</span>
-            </td>
-
-            <!-- Historical columns mapped out safely using single-letter display indicators -->
-            <td class="status-cell">
-              <span class="status-p">P</span>
-            </td>
-
-            <td class="status-cell">
-              <span [ngClass]="student.status === 'Absent' ? 'status-a' : 'status-p'">
-                {{ student.status === 'Absent' ? 'A' : 'P' }}
-              </span>
-            </td>
-
-            <td class="status-cell">
-              <span class="status-p">P</span>
-            </td>
-          </tr>
-        } @empty {
-          <tr>
-            <td colspan="5" class="empty-state">No attendance records found.</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
 </div>

@@ -3,11 +3,13 @@ import { Component, signal } from '@angular/core';
 //import { Navbar } from './navbar/navbar';
 import { AttendanceForm } from './attendance-form/attendance-form';
 import { Home } from './home/home';
+import { Registration } from './registration/registration';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [AttendanceForm, Home],
+  imports: [AttendanceForm, Home, Registration],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
