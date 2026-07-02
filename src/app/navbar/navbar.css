@@ -1,0 +1,81 @@
+.app-navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-family: system-ui, -apple-system, sans-serif;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  }
+  
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  /* Brand Area Styles */
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .brand-icon {
+    font-size: 1.5rem;
+  }
+  
+  .brand-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.025em;
+  }
+  
+  /* Links Structural Configuration */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #475569;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: #1e293b;
+  }
+  
+  /* Specific Treatment for the Register Action Button */
+  .nav-links .nav-btn-register {
+    background-color: #1e293b;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .nav-links .nav-btn-register:hover {
+    background-color: #334155;
+    color: #ffffff;
+  }
+  
+  .nav-links .nav-btn-register.active {
+    background-color: #0f172a;
+    color: #ffffff;
+  }
+  
